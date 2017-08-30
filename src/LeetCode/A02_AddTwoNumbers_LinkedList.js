@@ -13,29 +13,31 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
-}
-let append = function(val, linkedlist) {
+var append = function(val, head) {
   let node = new ListNode(val);
-  if(linkedlist === null) {
-    linkedlist = node;
+  let current;
+  if(head === null) {
+    head = node;
   }else{
-    while(linkedlist.next){
-      linkedlist = linkedlist.next;
+    current = head;
+    while(current.next){
+      current = current.next;
     }
-    linkedlist.next = node;
+    current.next = node;
   }
-};
-let addTwoNumbers = function(l1, l2) {
-  let sumLinkedList = null;
-  let elem = l1;
-  let elem2 = l2;
-  while (elem !== null) {
-    append((elem.val + elem2.val) % 10, sumLinkedList);
-    elem = elem.next;
-    elem2 = elem2.next;
+  return head;
+}
+var addTwoNumbers = function(l1, l2) {
+  let p = null;
+  let carry = 0;
+  while(l1!==null || l2!==null || carry !== 0){
+    let t1 = l1 === null ? 0 : l1.val;
+    let t2 = l2 === null ? 0 : l2.val;
+    let digit = (t1 + t2) % 10 + carry;
+    p = append(digit % 10, p);
+    carry = ((t1 + t2) >= 10 || digit >= 10) ? 1 : 0;
+    if(l1 !== null) l1 = l1.next;
+    if(l2 !== null) l2 = l2.next;
   }
-  return sumLinkedList;
+  return p;
 };
