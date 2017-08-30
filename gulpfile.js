@@ -22,7 +22,7 @@ gulp.task('browserifyTask', () => browserify({
 // 监视任务
 
 gulp.task('watchjs', () => {
-  gulp.watch('src/stack/*', ['browserifyTask']);
+  gulp.watch('src/LeetCode/*', ['browserifyTask']);
 });
 
 gulp.task('runtasks', (callback) => {
