@@ -8,7 +8,6 @@ function LinkedList() {
         this.val = val;
         this.next = null;
     };
-    this.length = 0;
     this.head = null;
 
     this.createLinkedList = function(valArray) {
@@ -29,20 +28,25 @@ function LinkedList() {
             }
             current.next = node;
         }
-        this.length += 1;
     };
 
-    this.reverse = function (head) {
+    this.reverse = function () {
         let data = JSON.parse(JSON.stringify(this.head));
-        let prev = null, node = new LinkedList();
-        node.append(this.head.val);
-        while (data.next) {
-            node.next = prev;
-            prev = data.next;
+        let prev = null;
+        let current = data;
+        console.log(data, 'current');
+        let nextTemp;
+        while (current !== null) {
+            nextTemp = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextTemp;
         }
+        return prev;
     }
 }
 
 let nodelist = new LinkedList();
 nodelist.createLinkedList([1, 2, 3, 4, 5]);
-console.log(nodelist);
+console.log('Original List is', nodelist);
+console.log('Reversed List is', nodelist.reverse());
