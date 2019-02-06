@@ -48,6 +48,12 @@ function LinkedList() {
         return prev;
     };
 
+    // Reversed Linked List II
+    // https://leetcode.com/problems/reverse-linked-list-ii/
+    // Reverse a linked list from position m to n. Do it in one-pass.
+    //
+    // Note: 1 ≤ m ≤ n ≤ length of list.
+
     // 每K组反转
     // https://leetcode.com/problems/reverse-nodes-in-k-group/
     this.reverseKGroup = (k) => {
